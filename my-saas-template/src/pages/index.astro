@@ -1,0 +1,13 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Hero from '../components/react/Hero.tsx';
+import Features from '../components/react/Features.tsx';
+import Pricing from '../components/react/Pricing.tsx';
+import Footer from '../components/react/Footer.tsx';
+---
+<Layout title="My SaaS Startup">
+  <Hero client:visible />
+  <Features client:visible />
+  <Pricing client:visible />
+  <Footer client:visible />
+</Layout>
