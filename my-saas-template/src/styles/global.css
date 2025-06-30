@@ -12,6 +12,15 @@
   --background-frosted: rgba(242, 242, 247, 0.8); /* Simulating frosted glass */
 }
 
+[data-theme="dark"] {
+  --primary-blue: #0A84FF; /* Apple Dark Mode Blue */
+  --light-gray: #1c1c1e;   /* Apple Dark Mode Light Gray */
+  --text-dark: #ffffff;    /* Apple Dark Mode Dark Text (now white) */
+  --text-light: #8e8e93;   /* Apple Dark Mode Light Text */
+  --background-light: #000000; /* Apple Dark Mode Background (black) */
+  --background-frosted: rgba(28, 28, 30, 0.8); /* Simulating frosted glass for dark mode */
+}
+
 body {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
   background-color: var(--background-light);

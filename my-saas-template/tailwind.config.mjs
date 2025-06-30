@@ -11,6 +11,13 @@ export default {
         'text-light': 'var(--text-light)',
         'background-light': 'var(--background-light)',
         'background-frosted': 'var(--background-frosted)',
+        // Dark theme colors
+        'dark-primary-blue': 'var(--primary-blue)', // Example, if you want to specifically reference dark theme colors in Tailwind classes
+        'dark-light-gray': 'var(--light-gray)',
+        'dark-text-dark': 'var(--text-dark)',
+        'dark-text-light': 'var(--text-light)',
+        'dark-background-light': 'var(--background-light)',
+        'dark-background-frosted': 'var(--background-frosted)',
       },
       fontFamily: {
         sans: ['-apple-system', 'BlinkMacSystemFont', '"Segoe UI"', 'Roboto', 'Helvetica', 'Arial', 'sans-serif', '"Apple Color Emoji"', '"Segoe UI Emoji"', '"Segoe UI Symbol"'],
