@@ -1,0 +1,81 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+// This page will now primarily rely on client-side script for auth state
+---
+
+<Layout title="Dashboard - Domain Registrar">
+  <div id="dashboard-content">
+    <!-- Content will be rendered by client-side script -->
+    <p>Loading dashboard...</p>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const dashboardContent = document.getElementById('dashboard-content');
+      let isAuthenticated = false;
+      let userName = 'User';
+
+      try {
+        isAuthenticated = localStorage.getItem('isAuthenticated') === 'true';
+        const currentUserData = localStorage.getItem('currentUser');
+        if (currentUserData) {
+          const user = JSON.parse(currentUserData);
+          userName = user.name || 'User';
+        }
+      } catch (e) {
+        console.error("Error accessing localStorage:", e);
+        // Keep isAuthenticated as false if localStorage is unavailable/errors out
+      }
+
+      if (isAuthenticated) {
+        dashboardContent.innerHTML = `
+          <h1>Your Dashboard</h1>
+          <p>Welcome back, ${userName}!</p>
+
+          <section style="margin-top: 2rem;">
+            <h2>Your Registered Domains</h2>
+            <div>
+              <p><em>Your registered domains will be listed here. (Mocked data)</em></p>
+              <ul>
+                <li>example.com (Expires: 2025-12-31)</li>
+                <li>anotherdomain.net (Expires: 2026-06-15)</li>
+              </ul>
+            </div>
+          </section>
+
+          <section style="margin-top: 2rem;">
+            <h2>Account Settings</h2>
+            <p><a href="/account-settings" style="color: #007bff; text-decoration: none;">Manage your account details</a> (Not implemented)</p>
+            <button id="logoutButton" style="margin-top: 1rem; padding: 0.5rem 1rem; background-color: #dc3545; color: white; border: none; border-radius: 4px; cursor: pointer;">Logout</button>
+          </section>
+        `;
+
+        const logoutButton = document.getElementById('logoutButton');
+        if(logoutButton) {
+          logoutButton.addEventListener('click', () => {
+            try {
+              localStorage.removeItem('isAuthenticated');
+              localStorage.removeItem('currentUser');
+              localStorage.removeItem('mockUser'); // Clear all mock session data
+              window.location.href = '/login';
+            } catch (e) {
+              console.error("Error during logout:", e);
+              alert("Error during logout. Please clear your site data manually.");
+            }
+          });
+        }
+      } else {
+        dashboardContent.innerHTML = `
+          <h1>Access Denied</h1>
+          <p>You need to be logged in to view this page.</p>
+          <p>
+            <a href="/login" style="color: #007bff; text-decoration: none;">Login now</a> or
+            <a href="/signup" style="color: #007bff; text-decoration: none;">create an account</a>.
+          </p>
+        `;
+      }
+    });
+  </script>
+</Layout>
+```

@@ -1,0 +1,31 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Welcome - Domain Registrar">
+  <h1>Find Your Perfect Domain</h1>
+  <p>Search for available domain names and register them in minutes. Get started by creating an account or logging in.</p>
+
+  <section style="margin-top: 2rem; padding: 1rem; background-color: #fff; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
+    <h2>Quick Search</h2>
+    <form action="/domains" method="get">
+      <input type="text" name="query" placeholder="Enter domain name (e.g., example.com)" style="padding: 0.75rem; border: 1px solid #ccc; border-radius: 4px; width: 70%; margin-right: 0.5rem;" />
+      <button type="submit" style="padding: 0.75rem 1.5rem; background-color: #007bff; color: white; border: none; border-radius: 4px; cursor: pointer;">Search</button>
+    </form>
+    <p style="margin-top: 1rem;">
+      <a href="/signup" style="margin-right: 1rem; color: #007bff; text-decoration: none;">Create an Account</a>
+      <a href="/login" style="color: #007bff; text-decoration: none;">Login to Your Account</a>
+    </p>
+  </section>
+
+  <section style="margin-top: 2rem;">
+    <h2>Why Choose Us?</h2>
+    <ul>
+      <li>Easy to use platform</li>
+      <li>Competitive pricing</li>
+      <li>Reliable service</li>
+      <li>24/7 Support (Conceptual)</li>
+    </ul>
+  </section>
+</Layout>
+```

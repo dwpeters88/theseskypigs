@@ -1,0 +1,275 @@
+---
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
+export interface Props {
+	title: string;
+}
+
+const { title } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="description" content="Astro Domain Registrar" />
+		<meta name="viewport" content="width=device-width" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="generator" content={Astro.generator} />
+		<title>{title}</title>
+		<style is:global>
+			/* More refined global styles */
+			:root {
+				--font-family-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+				--font-family-monospace: Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+
+				--content-width: 960px; /* Max width for main content */
+				--border-radius-small: 4px;
+				--border-radius-medium: 8px;
+
+				--color-primary: #007bff; /* Blue */
+				--color-primary-dark: #0056b3;
+				--color-secondary: #6c757d; /* Gray */
+				--color-success: #28a745; /* Green */
+				--color-danger: #dc3545; /* Red */
+				--color-warning: #ffc107; /* Yellow */
+				--color-info: #17a2b8; /* Teal */
+
+				--color-text: #212529;
+				--color-background: #f8f9fa;
+				--color-surface: #ffffff; /* For cards, modals etc. */
+				--color-border: #dee2e6;
+
+				--space-xs: 0.25rem; /* 4px */
+				--space-s: 0.5rem;   /* 8px */
+				--space-m: 1rem;     /* 16px */
+				--space-l: 1.5rem;   /* 24px */
+				--space-xl: 2rem;    /* 32px */
+				--space-xxl: 3rem;   /* 48px */
+
+				--box-shadow-sm: 0 .125rem .25rem rgba(0,0,0,.075);
+				--box-shadow: 0 .5rem 1rem rgba(0,0,0,.15);
+			}
+
+			/* Reset and base styles */
+			*,
+			*::before,
+			*::after {
+				box-sizing: border-box;
+			}
+
+			html {
+				font-size: 16px; /* Base font size */
+				-webkit-text-size-adjust: 100%;
+				-webkit-tap-highlight-color: rgba(0,0,0,0);
+			}
+
+			body {
+				margin: 0;
+				font-family: var(--font-family-sans);
+				font-size: 1rem;
+				font-weight: 400;
+				line-height: 1.6;
+				color: var(--color-text);
+				background-color: var(--color-background);
+				display: flex;
+				flex-direction: column;
+				min-height: 100vh;
+			}
+
+			/* Main content container */
+			.main-content {
+				flex-grow: 1;
+				width: 100%;
+				max-width: var(--content-width);
+				padding: var(--space-l); /* Increased padding */
+				margin-left: auto;
+				margin-right: auto;
+			}
+
+			/* Typography */
+			h1, h2, h3, h4, h5, h6 {
+				margin-top: 0;
+				margin-bottom: var(--space-s);
+				font-weight: 500;
+				line-height: 1.2;
+			}
+			h1 { font-size: 2.25rem; margin-top: var(--space-xl); margin-bottom: var(--space-m); } /* Larger H1 */
+			h2 { font-size: 1.75rem; margin-top: var(--space-l); margin-bottom: var(--space-s); }
+			h3 { font-size: 1.5rem; margin-top: var(--space-l); margin-bottom: var(--space-xs); }
+			p { margin-top: 0; margin-bottom: var(--space-m); }
+			a { color: var(--color-primary); text-decoration: none; }
+			a:hover { color: var(--color-primary-dark); text-decoration: underline; }
+
+			/* Basic form styling (can be overridden by component-specific styles) */
+			input[type="text"],
+			input[type="email"],
+			input[type="password"],
+			input[type="search"],
+			textarea,
+			select {
+				display: block;
+				width: 100%;
+				padding: var(--space-s) var(--space-m);
+				font-size: 1rem;
+				font-weight: 400;
+				line-height: 1.5;
+				color: var(--color-text);
+				background-color: var(--color-surface);
+				background-clip: padding-box;
+				border: 1px solid var(--color-border);
+				border-radius: var(--border-radius-small);
+				transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+				margin-bottom: var(--space-m); /* Add some default margin */
+			}
+			input[type="text"]:focus,
+			input[type="email"]:focus,
+			input[type="password"]:focus,
+			input[type="search"]:focus,
+			textarea:focus,
+			select:focus {
+				border-color: var(--color-primary);
+				outline: 0;
+				box-shadow: 0 0 0 .2rem rgba(var(--color-primary), .25);
+			}
+
+			button,
+			input[type="submit"],
+			input[type="reset"],
+			input[type="button"] {
+				display: inline-block;
+				font-weight: 400;
+				color: var(--color-surface);
+				text-align: center;
+				vertical-align: middle;
+				cursor: pointer;
+				user-select: none;
+				background-color: var(--color-primary);
+				border: 1px solid var(--color-primary);
+				padding: var(--space-s) var(--space-m);
+				font-size: 1rem;
+				line-height: 1.5;
+				border-radius: var(--border-radius-small);
+				transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+			}
+			button:hover,
+			input[type="submit"]:hover,
+			input[type="reset"]:hover,
+			input[type="button"]:hover {
+				background-color: var(--color-primary-dark);
+				border-color: var(--color-primary-dark);
+			}
+			button.success, .button-success { background-color: var(--color-success); border-color: var(--color-success); }
+			button.success:hover, .button-success:hover { background-color: #1e7e34; border-color: #1c7430;}
+			button.danger, .button-danger { background-color: var(--color-danger); border-color: var(--color-danger); }
+			button.danger:hover, .button-danger:hover { background-color: #bd2130; border-color: #b21f2d;}
+
+
+			/* Utility classes */
+			.card {
+				background-color: var(--color-surface);
+				border: 1px solid var(--color-border);
+				border-radius: var(--border-radius-medium);
+				padding: var(--space-l);
+				margin-bottom: var(--space-l);
+				box-shadow: var(--box-shadow-sm);
+			}
+			.text-center { text-align: center; }
+		</style>
+	</head>
+	<body>
+		<Header />
+		<main class="main-content">
+			<slot />
+		</main>
+		<Footer />
+	</body>
+</html>
+---
+// Props for the Layout component (though not strictly necessary for this basic example, good practice)
+// export interface Props {
+// 	title: string;
+// }
+// const { title } = Astro.props;
+// ---
+
+// <!doctype html>
+// <html lang="en">
+// 	<head>
+// 		<meta charset="UTF-8" />
+// 		<meta name="description" content="Astro Description" />
+// 		<meta name="viewport" content="width=device-width" />
+// 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+// 		<meta name="generator" content={Astro.generator} />
+// 		<title>{title}</title>
+// 	</head>
+// 	<body>
+// 		<slot />
+// 	</body>
+// </html>
+// <style is:global>
+// 	:root {
+// 		--accent: 136, 58, 234;
+// 		--accent-light: 224, 204, 250;
+// 		--accent-dark: 49, 10, 101;
+// 		--accent-gradient: linear-gradient(
+// 			45deg,
+// 			rgb(var(--accent)),
+// 			rgb(var(--accent-light)) 30%,
+// 			white 60%
+// 		);
+// 	}
+// 	html {
+// 		font-family: system-ui, sans-serif;
+// 		background: #13151a;
+// 		background-size: 224px;
+// 	}
+// 	code {
+// 		font-family:
+// 			Menlo,
+// 			Monaco,
+// 			Lucida Console,
+// 			Liberation Mono,
+// 			DejaVu Sans Mono,
+// 			Bitstream Vera Sans Mono,
+// 			Courier New,
+// 			monospace;
+// 	}
+// </style>
+// The above is the default Layout.astro, I will replace it.
+// No, I will create a new file with the new content directly.
+// The `create_file_with_block` will create `src/layouts/Layout.astro` if it doesn't exist,
+// or overwrite it if it does. Given this is part of setting up the basic structure,
+// overwriting the default is fine.
+
+// I will also need to create the Header and Footer components it imports.
+// And the pages that will use this layout.
+// For now, I'll just create the Layout.astro file.
+// The `---` block at the end of the file content for `create_file_with_block` is not needed.
+// It seems my tool description for `create_file_with_block` might be slightly confusing.
+// The content starts directly after the filepath.
+// The triple-dash fences `---` are part of Astro's component script syntax, not part of the tool's syntax.
+
+// Corrected approach:
+// 1. Create `Layout.astro`
+// 2. Create `Header.astro`
+// 3. Create `Footer.astro`
+// 4. Create the pages.
+// Let's start with Layout.astro.
+// The default `Layout.astro` that might exist from `npm create astro` is in `src/layouts/Layout.astro`.
+// My new `Layout.astro` should be placed there.
+// I will also update the default favicon.svg path if needed, but the default `/favicon.svg` is fine.
+// The default styles will be replaced with simpler ones for a clean interface.
+// The `---` at the end of the file content was a comment/thought process, not part of the intended file content.
+// The actual file content for Layout.astro is what's between the first `---` and the second `---` (for Astro's frontmatter)
+// and then the HTML template part.
+// The tool `create_file_with_block` will take the path and then the content that should go into that file.
+// The tool itself does not interpret the `---` as special; it's Astro that does.
+// So the content I provide should be exactly what I want in the `.astro` file.
+// The example in the prompt for `create_file_with_block` shows the content directly.
+
+// Let's ensure the directory `astro-domain-registrar/src/layouts` exists.
+// `create_file_with_block` should create parent directories if they don't exist.
+// `ls astro-domain-registrar/src` shows `components layouts pages` by default. So `layouts` should be there.
+// Ok, proceeding with creating `Layout.astro`.```
