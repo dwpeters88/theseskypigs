@@ -1,0 +1,14 @@
+---
+import Layout from '../layouts/Layout.astro';
+import LoginForm from '../components/react/LoginForm.jsx';
+---
+
+<Layout title="Login - Domain Registrar">
+  <h1>Login to Your Account</h1>
+  <p>Access your dashboard to manage your domains.</p>
+
+  <LoginForm client:load />
+
+  <p style="text-align: center; margin-top: 1.5rem;">Don't have an account? <a href="/signup" style="color: #007bff; text-decoration: none;">Sign up now</a>.</p>
+</Layout>
+```
